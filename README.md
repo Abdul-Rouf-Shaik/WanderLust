@@ -1,2 +1,2 @@
 # WanderLust
-A travel Website
+A travel Website.
