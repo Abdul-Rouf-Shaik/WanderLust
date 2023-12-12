@@ -99,6 +99,12 @@ app.use((req, res, next) => {
 // });
 
 
+//Route for redirecting to the listings page at root of the local host only 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
+
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
