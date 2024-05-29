@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
@@ -5,7 +7,7 @@ const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({accessToken: mapToken});
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = process.env.ATLASDB_URL;
 
 main()
     .then(() => console.log("connected to DB"))
@@ -30,7 +32,7 @@ const initDB = async (req, res) => {
         initData.data[i++] = listing;
     }
 
-    initData.data = initData.data.map((obj) => ({...obj, owner: "652e59398d62b84f5b4daf8a"}));
+    initData.data = initData.data.map((obj) => ({...obj, owner: "6656ca2098ff82c0d34a12ed"}));
 
     await Listing.insertMany(initData.data);
     console.log("data was initialized")

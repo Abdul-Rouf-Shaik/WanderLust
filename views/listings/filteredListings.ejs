@@ -123,7 +123,7 @@
         </div>
 
         <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
-            <% for(let listing of allListings) { %>
+            <% for(let listing of filteredListings) { %>
                 <a href="/listings/<%= listing._id %>" class="listing-link">
                     <div class="card col listing-card">
                         <img src="<%= listing.image.url %>" style="height: 20rem;" class="card-img-top"
@@ -155,4 +155,17 @@
                 }
             }
         });
+
+
+        //marking the current filter with color
+        let filter = '<%=filter%>'; // extracting the filter from render method
+
+        let filters = document.querySelectorAll('.filter p'); // selecting all the p tags to compare the filter with the innerText of the p tag
+        filters.forEach((el) => {
+            let match = el.innerText.toLowerCase().replace(" ", ""); // making all the letters to lowercase and removing the space between the innerText of p tag if it exists 
+
+            if (match === filter) {
+                el.parentElement.style.color = "#FE424D"; // making the color 
+            }
+        })
     </script>
