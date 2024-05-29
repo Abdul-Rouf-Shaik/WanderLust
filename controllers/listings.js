@@ -20,7 +20,6 @@ module.exports.searchListings = async (req, res) => {
       { country: { $regex: new RegExp(dest, 'i') } }
     ],
   });
-  console.log(searchedListings);
   if (searchedListings.length === 0) {
     let err = {
       message: "No such listings exist.",
